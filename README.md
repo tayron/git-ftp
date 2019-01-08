@@ -2,6 +2,28 @@
 
 [http://git-ftp.github.io](https://git-ftp.github.io)
 
+Shared Host exemple:
+
+```SSH
+# you can use a Docker image from Docker Hub or your own container
+# registry for your build environment
+
+pipelines:
+  default:
+    - step:
+        name: Deploy to production
+        deployment: production   # can be test, staging or production.
+        # trigger: manual  # Uncomment to make this a manual deployment.
+        image: samueldebruyn/debian-git
+        services:
+          - docker
+        script:
+          - apt-get update
+          - apt-get -qq install git-ftp
+          # use git ftp init for the first deploy to server
+          - git ftp push --user $FTP_USERNAME --passwd $FTP_PASSWORD ftp://site.com.br/public_html
+```
+
 
 Instructions for syncing a local folder with a remote FTP or SFTP server
 The only requirement is git-ftp:
