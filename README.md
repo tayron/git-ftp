@@ -2,7 +2,7 @@
 
 [http://git-ftp.github.io](https://git-ftp.github.io)
 
-Shared Host exemple:
+Shared Host exemple using pipeline of Bitbucket:
 
 ```SSH
 # you can use a Docker image from Docker Hub or your own container
@@ -24,6 +24,44 @@ pipelines:
           - git ftp push --user $FTP_USERNAME --passwd $FTP_PASSWORD ftp://site.com.br/public_html
 ```
 
+Shared Host exemple using Shell script:
+
+```SSH
+#!/bin/bash
+
+clear
+
+echo "1) Put production or testing:"
+read ENVIRONMENT
+
+echo
+echo "1) Put your action:"
+read FTP_ACTION
+
+FTP_USERNAME="site_user"
+FTP_PASSWORD="site_password"
+
+$ git config git-ftp.password $FTP_USERNAME
+$ git config git-ftp.password $FTP_PASSWORD
+
+
+$ git config git-ftp.production.url ftp://site.com.br/public_html
+$ git config git-ftp.testing.url ftp://site.com.br/public_html/subdominio_homologacao
+
+# git ftp push -s testing
+# git ftp push -s production
+
+echo
+echo "Starting deploy in ${ENVIRONMENT}"
+echo "---------------------------------------------------------------"
+echo 
+
+git ftp $FTP_ACTION -s $ENVIRONMENT -vv
+
+echo
+read -s -n 1 -p "Press any key to continue . . ."
+echo
+```
 
 Instructions for syncing a local folder with a remote FTP or SFTP server
 The only requirement is git-ftp:
