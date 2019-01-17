@@ -24,7 +24,7 @@ pipelines:
           - git ftp push --user $FTP_USERNAME --passwd $FTP_PASSWORD ftp://site.com.br/public_html
 ```
 
-## Shared Host exemple using Shell script:
+## Shared Host example using Shell script:
 
 ```SSH
 #!/bin/bash
