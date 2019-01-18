@@ -35,18 +35,18 @@ echo "1) Put production or testing:"
 read ENVIRONMENT
 
 echo
-echo "1) Put your action:"
+echo "1) Put your action, init or push:"
 read FTP_ACTION
 
-FTP_USERNAME="site_user"
-FTP_PASSWORD="site_password"
+FTP_USERNAME="username_ftp"
+FTP_PASSWORD="password_ftp"
 
-$ git config git-ftp.password $FTP_USERNAME
-$ git config git-ftp.password $FTP_PASSWORD
+git config git-ftp.user $FTP_USERNAME
+git config git-ftp.password $FTP_PASSWORD
 
 
-$ git config git-ftp.production.url ftp://site.com.br/public_html
-$ git config git-ftp.testing.url ftp://site.com.br/public_html/subdominio_homologacao
+git config git-ftp.production.url ftp://site.com.br/public_html
+git config git-ftp.testing.url ftp://site.com.br/public_html/subdominio_homologacao
 
 # git ftp push -s testing
 # git ftp push -s production
